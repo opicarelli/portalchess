@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+
+        <ui:composition template="/template/layout/layout.xhtml">
+
+            <ui:define name="content">
+                <div class="page-header">
+                    <h1>
+                        <h:outputText value="#{msgs['page.tournament.search.title']}" />
+                    </h1>
+                </div>
+                <h:form id="searchTournamentForm" role="form">
+                    <h:panelGroup layout="block" styleClass="form-group">
+                        <h:outputLabel id="tournamentTypeLbl" value="#{msgs['page.tournament.search.form.lbl.tournament.type']}" styleClass="control-label" />
+                        <h:selectOneMenu id="tournamentTypeSelect" value="#{searchTournament.filter.type}" styleClass="form-control">
+                            <f:selectItem itemLabel="" itemValue="#{null}" />
+                            <f:selectItems value="#{searchTournament.tournamentTypes}" var="item" itemValue="#{item}" itemLabel="#{msgs[item.name()]}" />
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:commandLink id="searchTournamentBtn" value="#{msgs['button.search']}" styleClass="btn btn-primary"
+                        action="#{searchTournament.onClickSearch}">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </h:commandLink>
+
+                    <hr />
+                    <h3>
+                        <h:outputText value="#{msgs['page.tournament.search.subtitle.result']}" />
+                    </h3>
+
+                    <h:dataTable id="tournamentsTable" value="#{searchTournament.tournaments}" var="t" styleClass="table" binding="#{table}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.search.form.table.tournament.index']}" />
+                            </f:facet>
+                            #{table.rowIndex + 1}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.search.form.table.tournament.name']}" />
+                            </f:facet>
+                            #{t.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.search.form.table.tournament.description']}" />
+                            </f:facet>
+                            #{t.description}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.search.form.table.tournament.date']}" />
+                            </f:facet>
+                            <h:outputText value="#{t.dateFrom}">
+                                <f:convertDateTime pattern="#{msgs['pattern.date.time']}" />
+                            </h:outputText>
+                            <h:outputText value="#{msgs['commons.label.separator']}" />
+                            <h:outputText value="#{t.dateTo}">
+                                <f:convertDateTime pattern="#{msgs['pattern.date.time']}" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.search.form.table.tournament.actions']}" />
+                            </f:facet>
+                            <h:link id="view" value="#{msgs['button.view']}" outcome="/template/tournament/view" styleClass="btn btn-default">
+                                <f:param name="id" value="#{searchTournament.cipher(t.id)}" />
+                                <span class="glyphicon glyphicon-search"></span>
+                            </h:link>
+                            <h:link id="subscribe" value="#{msgs['button.subscribe']}" outcome="/template/tournament/subscribe" styleClass="btn btn-default">
+                                <f:param name="id" value="#{searchTournament.cipher(t.id)}" />
+                                <span class="glyphicon glyphicon-ok-sign"></span>
+                            </h:link>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+
+                <script type="text/javascript">
+
+                </script>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>

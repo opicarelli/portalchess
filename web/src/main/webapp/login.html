@@ -1,0 +1,203 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+
+	<title>Portal Chess - Login</title>
+
+	<style type="text/css">
+		body {
+			margin: 0;
+		}
+		.container {
+			content: " ";
+			display: table;
+			clear: both;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+
+		*:before, *:after {
+				-moz-box-sizing: border-box;
+		}
+
+		body {
+			color: #333333;
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 14px;
+			line-height: 1.42857;
+		}
+
+		h2 {
+			font-size: 30px;
+			margin-top: 20px;
+			color: inherit;
+			font-family: inherit;
+			font-weight: 500;
+			line-height: 1.1;
+		}
+
+		.form-control {
+			background-color: #FFFFFF;
+			background-image: none;
+			border: 1px solid #CCCCCC;
+			border-radius: 4px;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+			color: #555555;
+			display: block;
+			font-size: 14px;
+			height: 34px;
+			line-height: 1.42857;
+			padding: 6px 12px;
+			transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+			width: 100%;
+		}
+
+		button, input {
+			color: inherit;
+			font: inherit;
+			margin: 0;
+		}
+
+		.form-control::-moz-placeholder {
+			color: #999999;
+			opacity: 1;
+		}
+
+		.checkbox {
+			display: block;
+			margin-bottom: 10px;
+			margin-top: 10px;
+			min-height: 20px;
+			padding-left: 20px;
+		}
+
+		.checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+			float: left;
+			margin-left: -20px;
+		}
+
+		.btn {
+			-moz-user-select: none;
+			background-image: none;
+			border: 1px solid rgba(0, 0, 0, 0);
+			border-radius: 4px;
+			cursor: pointer;
+			display: inline-block;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 1.42857;
+			margin-bottom: 0;
+			padding: 6px 12px;
+			text-align: center;
+			vertical-align: middle;
+			white-space: nowrap;
+		}
+
+		.btn-block {
+			display: block;
+			padding-left: 0;
+			padding-right: 0;
+			width: 100%;
+		}
+
+		.btn-lg, .btn-group-lg > .btn {
+			border-radius: 6px;
+			font-size: 18px;
+			line-height: 1.33;
+			padding: 10px 16px;
+		}
+
+		.btn-primary {
+			background-color: #428BCA;
+			border-color: #357EBD;
+			color: #FFFFFF;
+		}
+
+		.btn-primary:hover{
+			color: #fff;
+			background-color: #3276b1;
+			border-color: #285e8e;
+		}
+
+		.form-control:focus {
+			border-color: #66AFE9;
+			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+			outline: 0 none;
+		}
+
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #eee;
+		}
+
+		.form-signin {
+			max-width: 330px;
+			padding: 15px;
+			margin: 0 auto;
+		}
+
+		.form-signin .form-signin-heading,
+		.form-signin .checkbox {
+			margin-bottom: 10px;
+		}
+
+		.form-signin .checkbox {
+			font-weight: normal;
+		}
+
+		.form-signin .form-control {
+			position: relative;
+			height: auto;
+			-webkit-box-sizing: border-box;
+				 -moz-box-sizing: border-box;
+							box-sizing: border-box;
+			padding: 10px;
+			font-size: 16px;
+		}
+
+		.form-signin .form-control:focus {
+			z-index: 2;
+		}
+
+		.form-signin input[type="text"] {
+			margin-bottom: -1px;
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		.form-signin input[type="password"] {
+			margin-bottom: 10px;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+		}
+	</style>
+
+	<script type="text/javascript">
+	</script>
+</head>
+
+<body>
+
+	<div class="container">
+
+		<form class="form-signin" role="form" method="post" action="j_security_check">
+			<h2 class="form-signin-heading">Please sign in</h2>
+			<input type="text" id="j_username" name="j_username" class="form-control" placeholder="Username" required autofocus>
+			<input type="password" id="j_password" name="j_password" class="form-control" placeholder="Password" required>
+			<label class="checkbox">
+				<input type="checkbox" value="remember-me"> Remember me
+			</label>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		</form>
+
+	</div>
+
+</body>
+
+</html>

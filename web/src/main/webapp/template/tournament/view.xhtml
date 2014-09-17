@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+	<f:metadata>
+		<f:viewParam name="id" value="#{viewTournament.id}" />
+		<f:event listener="#{viewTournament.loadTournament()}" type="preRenderView" />
+	</f:metadata>
+	<h:body>
+
+		<ui:composition template="/template/layout/layout.xhtml">
+
+			<ui:define name="content">
+				<div class="page-header">
+					<h1>
+						<h:outputText value="#{msgs['page.tournament.view.title']}" />
+					</h1>
+				</div>
+				<h:form id="viewTournamentForm" role="form">
+					<dl class="dl-horizontal">
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.name']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{viewTournament.tournament.name}" />
+						</dd>
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.description']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{empty viewTournament.tournament.description ? ' - ' : viewTournament.tournament.description}" />
+						</dd>
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.start.date']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{viewTournament.tournament.dateFrom}">
+								<f:convertDateTime type="date" pattern="#{msgs['pattern.date.time']}" />
+							</h:outputText>
+						</dd>
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.end.date']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{viewTournament.tournament.dateTo}">
+								<f:convertDateTime type="date" pattern="#{msgs['pattern.date.time']}" />
+							</h:outputText>
+						</dd>
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.min.players']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{viewTournament.tournament.minPlayers}" />
+						</dd>
+
+						<dt>
+							<h:outputText value="#{msgs['page.tournament.view.form.lbl.max.players']}" />
+						</dt>
+						<dd>
+							<h:outputText value="#{empty viewTournament.tournament.maxPlayers ? ' - ' : viewTournament.tournament.maxPlayers}" />
+						</dd>
+					</dl>
+
+					<hr />
+					<h3>
+						<h:outputText value="#{msgs['page.tournament.view.subtitle.category']}" />
+					</h3>
+
+					<ul class="nav nav-tabs">
+						<ui:repeat value="#{viewTournament.tournament.categories}" var="item" varStatus="status">
+							<li>
+								<a href="#playerCardsFade-#{status.index}" data-toggle="tab"><h:outputText value="#{item.name}" /></a>
+							</li>
+						</ui:repeat>
+					</ul>
+					<h:panelGroup id="playerCardsTableDiv" layout="block" styleClass="tab-content">
+						<ui:repeat value="#{viewTournament.tournament.categories}" var="item" varStatus="status">
+							<div class="tab-pane fade" id="playerCardsFade-#{status.index}">
+								<h:dataTable id="playerCardsTable" value="#{item.playerCards}" var="p" styleClass="table" binding="#{table}">
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="#" />
+										</f:facet>
+										#{table.rowIndex + 1}
+									</h:column>
+									<h:column>
+										<f:facet name="header">
+											<h:outputText value="Player" />
+										</f:facet>
+										#{p.player.user.username}
+									</h:column>
+								</h:dataTable>
+							</div>
+						</ui:repeat>
+					</h:panelGroup>
+			</h:form>
+
+				<script type="text/javascript">
+					$(document).ready(function() {
+						$("ul.nav-tabs a").click(function (e) {
+							e.preventDefault()
+							$(this).tab("show");
+						});
+						$("ul.nav-tabs li:first").addClass("active");
+						$("div.tab-content div:first").addClass("active in");
+					});
+				</script>
+
+			</ui:define>
+
+		</ui:composition>
+
+	</h:body>
+
+</html>

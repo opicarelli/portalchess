@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd" version="2.0">
+    <application>
+        <message-bundle>
+            Messages
+        </message-bundle>
+        <resource-bundle>
+            <base-name>Messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+        <locale-config>
+            <supported-locale>pt_BR</supported-locale>
+        </locale-config>
+    </application>
+
+    <!-- Changing h:message and h:messages -->
+    <render-kit>
+        <renderer>
+            <component-family>javax.faces.Messages</component-family>
+            <renderer-type>javax.faces.Messages</renderer-type>
+            <renderer-class>br.com.portal.chess.custom.bootstrap.BootstrapMessagesRenderer</renderer-class>
+        </renderer>
+        <renderer>
+            <component-family>javax.faces.Message</component-family>
+            <renderer-type>javax.faces.Message</renderer-type>
+            <renderer-class>br.com.portal.chess.custom.bootstrap.BootstrapMessageRenderer</renderer-class>
+        </renderer>
+    </render-kit>
+
+</faces-config>

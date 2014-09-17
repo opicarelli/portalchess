@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <f:metadata>
+        <f:viewParam name="id" value="#{subscribeTournament.id}" />
+        <f:event listener="#{subscribeTournament.loadData()}" type="preRenderView" />
+    </f:metadata>
+    <h:body>
+
+        <ui:composition template="/template/layout/layout.xhtml">
+
+            <ui:define name="content">
+                <div class="page-header">
+                    <h1>
+                        <h:outputText value="#{msgs['page.tournament.subscribe.title']}" />
+                    </h1>
+                </div>
+                <h:form id="subscribeTournamentForm" role="form">
+                    <dl class="dl-horizontal">
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.name']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{subscribeTournament.tournament.name}" />
+                        </dd>
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.description']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{empty subscribeTournament.tournament.description ? ' - ' : subscribeTournament.tournament.description}" />
+                        </dd>
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.start.date']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{subscribeTournament.tournament.dateFrom}">
+                                <f:convertDateTime type="date" pattern="#{msgs['pattern.date.time']}" />
+                            </h:outputText>
+                        </dd>
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.end.date']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{subscribeTournament.tournament.dateTo}">
+                                <f:convertDateTime type="date" pattern="#{msgs['pattern.date.time']}" />
+                            </h:outputText>
+                        </dd>
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.min.players']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{subscribeTournament.tournament.minPlayers}" />
+                        </dd>
+
+                        <dt>
+                            <h:outputText value="#{msgs['page.tournament.subscribe.form.lbl.max.players']}" />
+                        </dt>
+                        <dd>
+                            <h:outputText value="#{empty subscribeTournament.tournament.maxPlayers ? ' - ' : subscribeTournament.tournament.maxPlayers}" />
+                        </dd>
+                    </dl>
+
+                    <!-- TODO: Set data player -->
+
+                    <hr />
+                    <h3>
+                        <h:outputText value="#{msgs['page.tournament.subscribe.subtitle.category']}" />
+                    </h3>
+
+                    <h:dataTable id="categoriesTable" value="#{subscribeTournament.categories}" var="c" styleClass="table" binding="#{table}">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.subscribe.form.table.category.index']}" />
+                            </f:facet>
+                            #{table.rowIndex + 1}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.subscribe.form.table.category.name']}" />
+                            </f:facet>
+                            #{c.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs['page.tournament.subscribe.form.table.category.description']}" />
+                            </f:facet>
+                            #{c.description}
+                        </h:column>
+                    </h:dataTable>
+
+                    <h:commandLink id="subscribeTournamentBtn" value="#{msgs['button.save']}" styleClass="btn btn-primary"
+                        action="#{subscribeTournament.onClickSubscribe}">
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                    </h:commandLink>
+                </h:form>
+
+                <script type="text/javascript">
+
+                </script>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>

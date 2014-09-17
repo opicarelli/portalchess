@@ -1,0 +1,24 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.com.portal.chess</groupId>
+	<artifactId>portal-chess</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Portal Chess - Implementation</name>
+
+	<parent>
+		<groupId>br.com.portal.chess</groupId>
+		<artifactId>portal-chess-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>parent</relativePath>
+	</parent>
+
+	<modules>
+		<module>parent</module>
+		<module>ejb</module>
+		<module>web</module>
+		<module>ear</module>
+	</modules>
+
+</project>

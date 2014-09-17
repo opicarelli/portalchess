@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <h:outputStylesheet library="css" name="bootstrap.css" target="head" />
+        <h:outputStylesheet library="css" name="common-style.css" target="head" />
+        <h:outputStylesheet library="css" name="bootstrap-datetimepicker.css" target="head" />
+
+        <h:outputScript library="js" name="jquery-1.11.0.min.js" target="head" />
+        <h:outputScript library="js" name="bootstrap.min.js" target="head" />
+        <h:outputScript library="js" name="moment.js" target="head" />
+        <h:outputScript library="js" name="bootstrap-datetimepicker.min.js" target="head" />
+
+        <title><h:outputText  value="#{msgs['page.title.portal']}"/></title>
+
+    </h:head>
+
+    <h:body>
+        <div id="loadingdiv" class="hide">
+            <div class="loadingimg">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <ui:insert name="header">
+            <ui:include src="/template/layout/header.xhtml" />
+        </ui:insert>
+
+        <div class="container">
+            <ui:insert name="content">
+                <ui:include src="/template/layout/content.xhtml" />
+            </ui:insert>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <ui:insert name="footer">
+                    <ui:include src="/template/layout/footer.xhtml" />
+                </ui:insert>
+            </div>
+        </div>
+
+    </h:body>
+
+</html>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:body>
+
+        <ui:composition template="/template/layout/layout.xhtml">
+
+            <ui:define name="content">
+                <div class="page-header">
+                    <h1>
+                        <h:outputText value="#{msgs['page.tournament.create.title']}" />
+                    </h1>
+                </div>
+                <h:form id="createTournamentForm" role="form">
+
+                    <h:messages id="messagesGlobal" />
+
+                    <div class="form-group #{not tournamentName.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="nameLbl" for="nameTxt" value="#{msgs['page.tournament.create.form.lbl.name']}" styleClass="control-label" />
+                        <h:inputText id="nameTxt" value="#{createTournament.tournament.name}" styleClass="form-control"
+                            label="#{msgs['page.tournament.create.form.lbl.name']}" binding="#{tournamentName}">
+                            <f:validateRequired />
+                            <f:validateLength minimum="3" maximum="255" />
+                        </h:inputText>
+                    </div>
+
+                    <div class="form-group #{not tournamentDescription.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="descriptionLbl" for="descriptionTxt" value="#{msgs['page.tournament.create.form.lbl.description']}" />
+                        <h:inputTextarea id="descriptionTxt" value="#{createTournament.tournament.description}" styleClass="form-control"
+                            rows="3" label="#{msgs['page.tournament.create.form.lbl.description']}" binding="#{tournamentDescription}">
+                            <f:validateLength maximum="255" />
+                        </h:inputTextarea>
+                    </div>
+
+                    <div class="form-group #{not tournamentDateFrom.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="startDateLbl" for="startDateTxt" value="#{msgs['page.tournament.create.form.lbl.start.date']}"
+                            styleClass="control-label" />
+                        <div class="input-group date form_datetime col-md-5" data-date="#{createTournament.dataDateNow}" data-date-format="#{msgs['pattern.bootstrap.date.time']}"
+                            data-link-field="startDateTxt">
+                            <h:inputText id="startDateTxt" value="#{createTournament.tournament.dateFrom}" styleClass="form-control" data-format="#{msgs['pattern.date.time']}"
+                                label="#{msgs['page.tournament.create.form.lbl.start.date']}" binding="#{tournamentDateFrom}">
+                                <f:validateRequired />
+                                <f:convertDateTime pattern="#{msgs['pattern.date.time']}" />
+                            </h:inputText>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group #{not tournamentDateTo.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="endDateLbl" for="endDateTxt" value="#{msgs['page.tournament.create.form.lbl.end.date']}" styleClass="control-label" />
+                        <div class="input-group date form_datetime col-md-5" data-date="#{createTournament.dataDateNow}" data-date-format="#{msgs['pattern.bootstrap.date.time']}"
+                            data-link-field="endDateTxt">
+                            <h:inputText id="endDateTxt" value="#{createTournament.tournament.dateTo}" styleClass="form-control" data-format="#{msgs['pattern.date.time']}"
+                                label="#{msgs['page.tournament.create.form.lbl.end.date']}" binding="#{tournamentDateTo}">
+                                <f:validateRequired />
+                                <f:convertDateTime pattern="#{msgs['pattern.date.time']}" />
+                            </h:inputText>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group #{not tournamentRegistrationLimitDate.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="registrationLimitDateLbl" for="registrationLimitDateTxt" value="#{msgs['page.tournament.create.form.lbl.registration.limit.date']}"
+                            styleClass="control-label" />
+                        <div class="input-group date form_datetime col-md-5" data-date="#{createTournament.dataDateNow}" data-date-format="#{msgs['pattern.bootstrap.date.time']}"
+                            data-link-field="registrationLimitDateTxt">
+                            <h:inputText id="registrationLimitDateTxt" value="#{createTournament.tournament.registrationLimitDate}" styleClass="form-control"
+                                data-format="#{msgs['pattern.date.time']}" label="#{msgs['page.tournament.create.form.lbl.registration.limit.date']}" binding="#{tournamentRegistrationLimitDate}">
+                                <f:validateRequired />
+                                <f:convertDateTime pattern="#{msgs['pattern.date.time']}" />
+                            </h:inputText>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </span>
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group #{not tournamentMinPlayers.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="minPlayersLbl" for="minPlayersTxt" value="#{msgs['page.tournament.create.form.lbl.min.players']}"
+                            styleClass="control-label" />
+                        <h:inputText id="minPlayersTxt" value="#{createTournament.tournament.minPlayers}" styleClass="form-control" maxlength="4"
+                            label="#{msgs['page.tournament.create.form.lbl.minPlayers']}" binding="#{tournamentMinPlayers}">
+                            <f:validateRequired />
+                        </h:inputText>
+                    </div>
+
+                    <div class="form-group #{not tournamentMaxPlayers.valid ? 'has-error' : ''}">
+                        <h:outputLabel id="maxPlayersLbl" for="maxPlayersTxt" value="#{msgs['page.tournament.create.form.lbl.max.players']}"
+                            styleClass="control-label" />
+                        <h:inputText id="maxPlayersTxt" value="#{createTournament.tournament.maxPlayers}" styleClass="form-control" maxlength="4"
+                            label="#{msgs['page.tournament.create.form.lbl.maxPlayers']}" binding="#{tournamentMaxPlayers}">
+                        </h:inputText>
+                    </div>
+
+                    <hr />
+                    <h3>
+                        <h:outputText value="#{msgs['page.tournament.create.subtitle.category']}" />
+                    </h3>
+
+                    <!-- TODO: Exibir apenas mensagens da categoria -->
+                    <h:messages id="messagesCategory" />
+
+                    <h:panelGroup id="categoryFieldsDiv" layout="block">
+
+                        <h:panelGroup layout="block" styleClass="form-group #{not categoryName.valid ? 'has-error' : ''}">
+                            <h:outputLabel id="categoryNameLbl" for="categoryNameTxt" value="#{msgs['page.tournament.create.form.lbl.category.name']}"
+                                styleClass="control-label" />
+                            <h:inputText id="categoryNameTxt" value="#{createTournament.category.name}" styleClass="form-control"
+                                label="#{msgs['page.tournament.create.form.lbl.category.name']}" binding="#{categoryName}">
+                                <f:validateRequired />
+                                <f:validateLength minimum="3" maximum="255" />
+                            </h:inputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup layout="block" styleClass="form-group #{not categoryDescription.valid ? 'has-error' : ''}">
+                            <h:outputLabel id="categoryDescriptionLbl" for="categoryDescriptionTxt" value="#{msgs['page.tournament.create.form.lbl.category.description']}"
+                                styleClass="control-label" />
+                            <h:inputText id="categoryDescriptionTxt" value="#{createTournament.category.description}" styleClass="form-control"
+                                label="#{msgs['page.tournament.create.form.lbl.category.description']}" binding="#{categoryDescription}">
+                                <f:validateLength maximum="255" />
+                            </h:inputText>
+                        </h:panelGroup>
+
+                        <div class="form-group">
+                            <h:outputLabel id="categoryAbsoluteGenderLbl" for="categoryAbsoluteGenderSelect" value="#{msgs['page.tournament.create.form.lbl.category.absolute.gender']}"
+                                styleClass="control-label" />
+                            <h:selectOneMenu id="categoryAbsoluteGenderSelect" value="#{createTournament.category.absoluteGender}" styleClass="form-control">
+                                <f:selectItems value="#{createTournament.yesOrNo}" var="item" itemValue="#{item}" itemLabel="#{msgs[item.name()]}" />
+                                <f:ajax event="change" listener="#{createTournament.onChangeAbsoluteGender}" render="categoryGenderFieldsDiv" />
+                            </h:selectOneMenu>
+                        </div>
+
+                        <h:panelGroup id="categoryGenderFieldsDiv" layout="block">
+                            <h:panelGroup layout="block" styleClass="form-group #{not categoryGender.valid ? 'has-error' : ''}" rendered="#{not createTournament.category.absoluteGender.booleanValue}">
+                                <h:outputLabel id="categoryGenderLbl" value="#{msgs['page.tournament.create.form.lbl.category.gender']}" styleClass="control-label" />
+                                <h:selectOneMenu id="categoryGenderSelect" value="#{createTournament.category.gender}" styleClass="form-control"
+                                    binding="#{categoryGender}">
+                                    <f:selectItem itemLabel="" itemValue="#{null}" />
+                                    <f:selectItems value="#{createTournament.genders}" var="item" itemValue="#{item}" itemLabel="#{msgs[item.name()]}" />
+                                    <f:validateRequired />
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+                        </h:panelGroup>
+
+                        <div class="form-group">
+                            <h:outputLabel id="categoryAbsoluteAgeLbl" for="categoryAbsoluteAgeSelect" value="#{msgs['page.tournament.create.form.lbl.category.absolute.age']}"
+                                styleClass="control-label" />
+                            <h:selectOneMenu id="categoryAbsoluteAgeSelect" value="#{createTournament.category.absoluteAge}" styleClass="form-control">
+                                <f:selectItems value="#{createTournament.yesOrNo}" var="item" itemValue="#{item}" itemLabel="#{msgs[item.name()]}" />
+                                <f:ajax event="change" listener="#{createTournament.onChangeAbsoluteAge}" render="categoryAgeFieldsDiv" />
+                            </h:selectOneMenu>
+                        </div>
+
+                        <h:panelGroup id="categoryAgeFieldsDiv" layout="block">
+
+                            <h:panelGroup layout="block" styleClass="form-group #{not categoryStartAge.valid ? 'has-error' : ''}" rendered="#{not createTournament.category.absoluteAge.booleanValue}">
+                                <h:outputLabel id="categoryStartAgeLbl" for="categoryStartAgeTxt" value="#{msgs['page.tournament.create.form.lbl.category.start.age']}"
+                                    styleClass="control-label" />
+                                <h:inputText id="categoryStartAgeTxt" value="#{createTournament.category.startAge}" styleClass="form-control"
+                                    label="#{msgs['page.tournament.create.form.lbl.category.start.age']}" binding="#{categoryStartAge}">
+                                </h:inputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup layout="block" styleClass="form-group #{not categoryEndAge.valid ? 'has-error' : ''}" rendered="#{not createTournament.category.absoluteAge.booleanValue}">
+                                <h:outputLabel id="categoryEndAgeLbl" for="categoryEndAgeTxt" value="#{msgs['page.tournament.create.form.lbl.category.end.age']}"
+                                    styleClass="control-label" />
+                                <h:inputText id="categoryEndAgeTxt" value="#{createTournament.category.endAge}" styleClass="form-control"
+                                    label="#{msgs['page.tournament.create.form.lbl.category.end.age']}" binding="#{categoryEndAge}">
+                                </h:inputText>
+                            </h:panelGroup>
+
+                        </h:panelGroup>
+
+                        <h:commandLink id="addCategoryBtn" value="#{msgs['button.add']}" styleClass="btn btn-default">
+                            <f:ajax listener="#{createTournament.onClickAddCategory}"
+                                execute="categoryNameTxt categoryDescriptionTxt categoryAbsoluteGenderSelect categoryAbsoluteAgeSelect categoryGenderSelect categoryStartAgeTxt categoryEndAgeTxt"
+                                render="categoryFieldsDiv categoryNameTxt categoryDescriptionTxt categoryGenderFieldsDiv categoriesTable messagesCategory" />
+                                <span class="glyphicon glyphicon-plus"></span>
+                        </h:commandLink>
+
+                    </h:panelGroup>
+
+                    <h:panelGroup id="categoriesTableDiv" layout="block">
+                        <h:dataTable id="categoriesTable" value="#{createTournament.tournament.categories}" var="c" styleClass="table" binding="#{table}">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['page.tournament.create.form.table.category.index']}" />
+                                </f:facet>
+                                #{table.rowIndex + 1}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['page.tournament.create.form.table.category.name']}" />
+                                </f:facet>
+                                #{c.name}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['page.tournament.create.form.table.category.description']}" />
+                                </f:facet>
+                                #{c.description}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs['page.tournament.create.form.table.category.actions']}" />
+                                </f:facet>
+                                <h:commandLink type="button" value="#{msgs['button.delete']}" action="#{createTournament.onClickRemoveCategory}"
+                                    styleClass="btn btn-default">
+                                    <f:param name="idx" value="#{table.rowIndex}" />
+                                    <f:ajax render=":createTournamentForm:categoriesTableDiv" />
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGroup>
+
+                    <h:commandLink value="#{msgs['button.save']}" styleClass="btn btn-primary">
+                        <f:ajax listener="#{createTournament.onClickSave}" execute="nameTxt descriptionTxt startDateTxt endDateTxt registrationLimitDateTxt minPlayersTxt maxPlayersTxt"
+                            render="@form" />
+                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                    </h:commandLink>
+
+                </h:form>
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        $("div.date").each(function() {
+                            $(this).datetimepicker({
+                                format: "#{msgs['pattern.bootstrap.date.time']}",
+                                showMeridian: true,
+                                autoclose: true,
+                                todayHighlight: true,
+                                todayBtn: true,
+                                pickerPosition: "bottom-left"
+                            });
+                        });
+
+                        jsf.ajax.addOnEvent(function(data) {
+                            var ajaxstatus = data.status; // Can be "begin", "complete" and "success"
+                            var ajaxloader = $("#loadingdiv");
+
+                            switch (ajaxstatus) {
+                                case "begin": // This is called right before ajax request is been sent.
+                                    ajaxloader.attr("class", "show");
+                                    break;
+
+                                case "complete": // This is called right after ajax response is received.
+                                    ajaxloader.attr("class", "hide");
+                                    break;
+
+                                case "success": // This is called when ajax response is successfully processed.
+                                    // NOOP.
+                                    break;
+                            }
+                        });
+                    });
+                </script>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+
+</html>

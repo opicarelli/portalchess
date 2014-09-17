@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+
+<project name="Portal Chess" default="help" basedir=".">
+
+	<property environment="env" />
+	<property file="build.properties" />
+
+	<target name="help" description="Help">
+		<echo>
+			Usage:
+			ant [task1] [task2]... [taskn] [-Dparameter1=value1] [-Dparameter2=valeu2]... [-Dparameter3=value3]
+
+			To see all tasks, type:
+			ant -p
+
+			Read build.properties to see all parameters and default values:
+			cat build.properties
+		</echo>
+	</target>
+
+	<target name="clean" description="Remove target directory. This directory is in svn ignore list">
+		<delete dir="${target.dir}" />
+	</target>
+
+	<target name="jboss-install" description="Install JBoss on target directory">
+		<mkdir dir="${target.dir}" />
+		<delete dir="${target.dir}/jboss" />
+		<get src="${jboss.url}" dest="${target.dir}/jboss.zip" verbose="true" username="${repo.user}" password="${repo.pass}" />
+		<unzip src="${target.dir}/jboss.zip" dest="${target.dir}" />
+		<move todir="${target.dir}/jboss">
+			<fileset dir="${target.dir}/jboss-as-7.1.1.Final" />
+		</move>
+
+		<mkdir dir="${target.dir}/jboss/modules/org/postgresql/main" />
+
+		<chmod file="${target.dir}/jboss/bin/standalone.sh" perm="u+x" />
+	</target>
+
+	<target name="proj-install" description="Install application and resources on the JBoss. The JBoss must be configured in target directory (jboss-config task)">
+		<mkdir dir="${target.dir}" />
+		<exec executable="mvn" dir="${proj.local}" failonerror="true">
+			<arg value="clean" />
+			<arg value="install" />
+		</exec>
+	</target>
+	<target name="proj-config" description="Configure JBoss.">
+		<copy toDir="${jboss.home}/standalone" overwrite="true" verbose="true">
+			<fileset dir="src/jboss_server/standalone">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy toDir="${jboss.home}/modules" overwrite="true" verbose="true">
+			<fileset dir="src/jboss_server/modules">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy toFile="${jboss.home}/standalone/deployments/portal-chess.ear" overwrite="true" verbose="true">
+			<fileset dir="${proj.local}/ear/target">
+				<include name="portal-chess-*.ear" />
+			</fileset>
+		</copy>
+		<get src="${db.driver.jar}" dest="${jboss.home}/modules/org/postgresql/main/postgresql-9.1-903.jdbc3.jar" verbose="true" username="${repo.user}" password="${repo.pass}" />
+	</target>
+
+	<target name="jboss-clean" description="Delete tmp, data and log from jboss/standalone">
+		<delete dir="${jboss.home}/standalone/tmp" />
+		<delete dir="${jboss.home}/standalone/data" />
+		<delete dir="${jboss.home}/standalone/log" />
+	</target>
+
+</project>
