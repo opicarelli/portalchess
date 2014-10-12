@@ -1,0 +1,2 @@
+# Acessar app/portas do openshift local
+rhc port-forward portalchess

@@ -101,7 +101,16 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-                <!-- PORTAL CHESS - DataSource -->
+
+                <!-- OPENSHIFT Connection
+                PostgreSQL 9.2
+                Root User: admincl5hslz
+                Root Password: _wzfJDcHQNKR
+                Database Name: portalchess
+                Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
+                 -->
+
+                <!-- PORTAL CHESS - DataSource PostgreSQL - Begin
                 <datasource jta="false" jndi-name="java:/PortalChessDS" pool-name="portal" enabled="true" use-ccm="false">
                     <connection-url>jdbc:postgresql://localhost:5432/portal-chess</connection-url>
                     <driver-class>org.postgresql.Driver</driver-class>
@@ -118,14 +127,31 @@
                         <share-prepared-statements>false</share-prepared-statements>
                     </statement>
                 </datasource>
+                PORTAL CHESS - DataSource PostgreSQL - End
+                -->
+
+                <!-- PORTAL CHESS - DataSource H2 - Begin -->
+                <datasource jta="false" jndi-name="java:/PortalChessDS" pool-name="portal" enabled="true" use-ccm="false">
+                    <connection-url>jdbc:h2:mem:pchess;DB_CLOSE_DELAY=-1</connection-url>
+                    <driver>h2</driver>
+                    <security>
+                        <user-name>sa</user-name>
+                        <password>sa</password>
+                    </security>
+                </datasource>
+                <!-- PORTAL CHESS - DataSource H2 - End -->
+
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
                     </driver>
-                    <!-- PORTAL CHESS - Driver PostgreSQL -->
+
+                    <!-- PORTAL CHESS - Driver PostgreSQL - Begin -->
                     <driver name="postgresql" module="org.postgresql">
                         <driver-class>org.postgresql.Driver</driver-class>
                     </driver>
+                    <!-- PORTAL CHESS - Driver PostgreSQL - End -->
+
                 </drivers>
             </datasources>
         </subsystem>
@@ -264,7 +290,8 @@
                         <policy-module code="Delegating" flag="required"/>
                     </authorization>
                 </security-domain>
-                <!-- PORTAL CHESS - JAAS -->
+
+                <!-- PORTAL CHESS - JAAS - Begin -->
                 <security-domain name="PORTAL-CHESS-REALM">
                     <authentication>
                         <login-module code="org.jboss.security.auth.spi.DatabaseServerLoginModule" flag="required">
@@ -277,6 +304,8 @@
                         </login-module>
                     </authentication>
                 </security-domain>
+                <!-- PORTAL CHESS - JAAS - End -->
+
             </security-domains>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:threads:1.1"/>

@@ -1,7 +1,9 @@
-<project>
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.portal.chess</groupId>
     <artifactId>portal-chess-ejb</artifactId>
     <packaging>ejb</packaging>
     <name>Portal Chess - EJB</name>
@@ -90,6 +92,7 @@
                 </configuration>
             </plugin>
 
+<!-- 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jasperreports-maven-plugin</artifactId>
@@ -113,7 +116,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
+ -->
         </plugins>
 
         <resources>
