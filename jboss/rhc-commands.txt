@@ -1,2 +1,11 @@
 # Acessar app/portas do openshift local
 rhc port-forward portalchess
+
+# Reiniciar jboss
+rhc app restart -a portalchess
+
+# Parar jboss
+rhc app stop -a portalchess
+
+# Iniciar jboss
+rhc app start -a portalchess
