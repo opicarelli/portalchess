@@ -20,19 +20,20 @@
 
         <dependency>
             <groupId>javax.ejb</groupId>
-            <artifactId>ejb-api</artifactId>
+            <artifactId>javax.ejb-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
+            <artifactId>hibernate-core</artifactId>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -91,8 +92,7 @@
                     </componentProperties>
                 </configuration>
             </plugin>
-
-<!-- 
+            <!-- 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jasperreports-maven-plugin</artifactId>
@@ -116,7 +116,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
- -->
+            -->
         </plugins>
 
         <resources>

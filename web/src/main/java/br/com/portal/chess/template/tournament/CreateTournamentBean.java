@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -31,6 +32,7 @@ public class CreateTournamentBean implements Serializable {
 
     private ResourceBundle bundle;
 
+    @EJB
     private TournamentService tournamentService;
 
     private TournamentRoundRobing tournament;
@@ -51,7 +53,7 @@ public class CreateTournamentBean implements Serializable {
 
     public void onClickSave(AjaxBehaviorEvent ev) throws Exception {
         if (formValid()) {
-            tournament = getTournamentService().createRoundRobing(tournament);
+            tournament = tournamentService.createRoundRobing(tournament);
             String param = CipherUtils.cipher(String.valueOf(tournament.getId()));
             FacesContext.getCurrentInstance().getExternalContext().redirect("view.jsf?id=" + param);
         }
