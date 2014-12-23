@@ -20,6 +20,38 @@
         -->
     </properties>
 
+    <!-- PERFIS -->
+    <profiles>
+        <profile>
+            <id>openshift</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>openshift</name>
+                </property>
+            </activation>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
+                <hibernate.hbm2ddl.auto>validate</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>false</hibernate.show_sql>
+            </properties>
+        </profile>
+ 
+        <profile>
+            <id>desenv</id>
+            <activation>
+                <property>
+                    <name>desenv</name>
+                </property>
+            </activation>
+            <properties>
+                <hibernate.dialect>org.hibernate.dialect.H2Dialect</hibernate.dialect>
+                <hibernate.hbm2ddl.auto>update</hibernate.hbm2ddl.auto>
+                <hibernate.show_sql>true</hibernate.show_sql>
+            </properties>
+        </profile>
+    </profiles>
+
     <!-- REPOSITORIO DO MAVEN E CUSTOMIZADOS -->
     <repositories>
 

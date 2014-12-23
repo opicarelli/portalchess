@@ -45,12 +45,12 @@
 	</target>
 	<target name="proj-config" description="Configure JBoss.">
 		<copy toDir="${jboss.home}/standalone" overwrite="true" verbose="true">
-			<fileset dir="src/jboss_server/standalone">
+			<fileset dir="src/${server.config}/standalone">
 				<include name="**/*" />
 			</fileset>
 		</copy>
 		<copy toDir="${jboss.home}/modules" overwrite="true" verbose="true">
-			<fileset dir="src/jboss_server/modules">
+			<fileset dir="src/${server.config}/modules">
 				<include name="**/*" />
 			</fileset>
 		</copy>

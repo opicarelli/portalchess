@@ -72,9 +72,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <hibernate>
-                        <propertyFile>/src/main/conf/hbm2ddl.properties</propertyFile>
-                    </hibernate>
                     <components>
                         <component>
                             <name>hbm2ddl</name>
