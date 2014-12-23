@@ -43,7 +43,8 @@
 			<arg value="install" />
 		</exec>
 	</target>
-	<target name="proj-config" description="Configure JBoss.">
+
+	<target name="proj-config" description="Configure JBoss." depends="driver">
 		<copy toDir="${jboss.home}/standalone" overwrite="true" verbose="true">
 			<fileset dir="src/${server.config}/standalone">
 				<include name="**/*" />
@@ -59,6 +60,16 @@
 				<include name="portal-chess-*.ear" />
 			</fileset>
 		</copy>
+	</target>
+
+	<target name="check_server_config" description="Check if jboss_server was changed.">
+		<condition property="is_server_config_changed" >
+			<equals arg1="${server.config}" arg2="jboss_server" />
+		</condition>
+	</target>
+	
+	<target name="driver" depends="check_server_config" if="is_server_config_changed" description="Copy PostgreSQL driver."> 
+		<echo message="Copying PostgreSQL driver..." />
 		<get src="${db.driver.jar}" dest="${jboss.home}/modules/org/postgresql/main/postgresql-9.1-903.jdbc3.jar" verbose="true" username="${repo.user}" password="${repo.pass}" />
 	</target>
 
