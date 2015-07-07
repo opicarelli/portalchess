@@ -2,11 +2,9 @@ package br.com.portal.chess.template.tournament;
 
 import java.io.Serializable;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import br.com.portal.chess.domain.base.TournamentRoundRobing;
 import br.com.portal.chess.service.TournamentService;
@@ -20,6 +18,7 @@ public class ViewTournamentBean implements Serializable {
 
     private String id;
 
+    @EJB
     private TournamentService tournamentService;
 
     private TournamentRoundRobing tournament;
@@ -31,7 +30,7 @@ public class ViewTournamentBean implements Serializable {
             throw new RuntimeException("Param id is required");
         }
         Long param = Long.valueOf(CipherUtils.decipher(id));
-        tournament = getTournamentService().findById(TournamentRoundRobing.class, param, true);
+        tournament = tournamentService.findById(TournamentRoundRobing.class, param, true);
     }
 
     // -- Getters and Setters --/
@@ -53,17 +52,5 @@ public class ViewTournamentBean implements Serializable {
     }
 
     // -- Private methods -- //
-
-    private TournamentService getTournamentService() {
-        if (tournamentService == null) {
-            try {
-                Context ctx = new InitialContext();
-                tournamentService = (TournamentService) ctx.lookup("java:app/portal-chess-ejb/TournamentServiceBean");
-            } catch (NamingException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return tournamentService;
-    }
 
 }

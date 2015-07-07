@@ -7,11 +7,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.ForeignKey;
-
 @Entity
 @Table(name = "TOURNAMENT_ROUND_ROBING_T")
-@ForeignKey(name = "tournament_round_robing_tournament_fk")
+// TODO JPA 2.1 @ForeignKey(name = "tournament_round_robing_tournament_fk")
 public class TournamentRoundRobing extends Tournament {
 
     private static final long serialVersionUID = 1067973818251214752L;

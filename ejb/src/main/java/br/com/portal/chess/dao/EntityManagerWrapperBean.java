@@ -3,6 +3,7 @@ package br.com.portal.chess.dao;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -25,7 +26,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Stateless
-public class EntityManagerWrapperBean implements EntityManagerWrapper {
+public class EntityManagerWrapperBean implements EntityManagerWrapper, Serializable {
+
+    private static final long serialVersionUID = -7735257387557544407L;
 
     private static final Logger LOG = LoggerFactory.getLogger(EntityManagerWrapperBean.class);
 

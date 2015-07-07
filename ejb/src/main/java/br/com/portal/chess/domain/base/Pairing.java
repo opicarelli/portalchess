@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "PAIRING_T")
@@ -46,8 +45,7 @@ public class Pairing implements Serializable {
     }
 
     @OneToOne
-    @JoinColumn(name = "player_card_white_id")
-    @ForeignKey(name = "pairing_player_card_white_fk")
+    @JoinColumn(name = "player_card_white_id", foreignKey =  @ForeignKey(name = "pairing_player_card_white_fk"))
     public PlayerCard getWhite() {
         return white;
     }
@@ -57,8 +55,7 @@ public class Pairing implements Serializable {
     }
 
     @OneToOne
-    @JoinColumn(name = "player_card_black_id")
-    @ForeignKey(name = "pairing_player_card_black_fk")
+    @JoinColumn(name = "player_card_black_id", foreignKey = @ForeignKey(name = "pairing_player_card_black_fk"))
     public PlayerCard getBlack() {
         return black;
     }
@@ -68,8 +65,7 @@ public class Pairing implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "round_id", nullable = false)
-    @ForeignKey(name = "pairing_round_fk")
+    @JoinColumn(name = "round_id", nullable = false, foreignKey = @ForeignKey(name = "pairing_round_fk"))
     public Round getRound() {
         return round;
     }

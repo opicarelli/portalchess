@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "CATEGORY_T")
@@ -56,7 +56,7 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = true)
     public String getDescription() {
         return description;
     }
@@ -114,8 +114,7 @@ public class Category implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "tournament_id", nullable = false)
-    @ForeignKey(name = "category_tournamet_fk")
+    @JoinColumn(name = "tournament_id", nullable = false, foreignKey = @ForeignKey(name = "category_tournamet_fk"))
     public Tournament getTournament() {
         return tournament;
     }

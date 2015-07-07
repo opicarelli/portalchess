@@ -29,8 +29,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
             <scope>provided</scope>
         </dependency>
 
@@ -61,35 +61,7 @@
                     </archive>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>hibernate3-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>hbm2ddl</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <components>
-                        <component>
-                            <name>hbm2ddl</name>
-                            <implementation>annotationconfiguration</implementation>
-                        </component>
-                    </components>
-                    <componentProperties>
-                        <implementation>jpaconfiguration</implementation>
-                        <persistenceunit>portal-chess</persistenceunit>
-                        <outputfilename>schema.ddl</outputfilename>
-                        <drop>true</drop>
-                        <create>true</create>
-                        <export>false</export>
-                        <format>true</format>
-                    </componentProperties>
-                </configuration>
-            </plugin>
-            <!-- 
+            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jasperreports-maven-plugin</artifactId>

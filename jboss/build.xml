@@ -28,7 +28,7 @@
 		<get src="${jboss.url}" dest="${target.dir}/jboss.zip" verbose="true" username="${repo.user}" password="${repo.pass}" />
 		<unzip src="${target.dir}/jboss.zip" dest="${target.dir}" />
 		<move todir="${target.dir}/jboss">
-			<fileset dir="${target.dir}/jboss-as-7.1.1.Final" />
+			<fileset dir="${target.dir}/wildfly-9.0.0.Final" />
 		</move>
 
 		<mkdir dir="${target.dir}/jboss/modules/org/postgresql/main" />
@@ -67,10 +67,10 @@
 			<equals arg1="${server.config}" arg2="jboss_server" />
 		</condition>
 	</target>
-	
-	<target name="driver" depends="check_server_config" if="is_server_config_changed" description="Copy PostgreSQL driver."> 
+
+	<target name="driver" depends="check_server_config" if="is_server_config_changed" description="Copy PostgreSQL driver.">
 		<echo message="Copying PostgreSQL driver..." />
-		<get src="${db.driver.jar}" dest="${jboss.home}/modules/org/postgresql/main/postgresql-9.1-903.jdbc3.jar" verbose="true" username="${repo.user}" password="${repo.pass}" />
+		<get src="${db.driver.jar}" dest="${jboss.home}/modules/org/postgresql/main/postgresql-9.2-1004.jdbc3.jar" verbose="true" username="${repo.user}" password="${repo.pass}" />
 	</target>
 
 	<target name="jboss-clean" description="Delete tmp, data and log from jboss/standalone">

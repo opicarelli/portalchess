@@ -3,12 +3,10 @@ package br.com.portal.chess.template.tournament;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 
 import br.com.portal.chess.domain.base.Category;
 import br.com.portal.chess.domain.base.Player;
@@ -24,6 +22,7 @@ public class SubscribeTournamentBean implements Serializable {
 
     private String id;
 
+    @EJB
     private TournamentService tournamentService;
 
     private TournamentRoundRobing tournament;
@@ -41,15 +40,15 @@ public class SubscribeTournamentBean implements Serializable {
             throw new RuntimeException("Param id is required");
         }
         Long param = Long.valueOf(CipherUtils.decipher(id));
-        tournament = getTournamentService().findById(TournamentRoundRobing.class, param, false);
-        categories = getTournamentService().findCategoriesByTournamentAndActiveUser(tournament);
+        tournament = tournamentService.findById(TournamentRoundRobing.class, param, false);
+        categories = tournamentService.findCategoriesByTournamentAndActiveUser(tournament);
         if (categories.isEmpty()) {
             // TODO: Message
         } else {
             category = categories.get(0);
         }
 
-        player = getTournamentService().getPlayerByActiveUser();
+        player = tournamentService.getPlayerByActiveUser();
 
     }
 
@@ -58,7 +57,7 @@ public class SubscribeTournamentBean implements Serializable {
     }
 
     public void onClickSubscribe() {
-        getTournamentService().subscribe(category, player);
+        tournamentService.subscribe(category, player);
 
         // TODO: Redirect to some page
     }
@@ -106,17 +105,5 @@ public class SubscribeTournamentBean implements Serializable {
     }
 
     // -- Private methods -- //
-
-    private TournamentService getTournamentService() {
-        if (tournamentService == null) {
-            try {
-                Context ctx = new InitialContext();
-                tournamentService = (TournamentService) ctx.lookup("java:app/portal-chess-ejb/TournamentServiceBean");
-            } catch (NamingException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return tournamentService;
-    }
 
 }

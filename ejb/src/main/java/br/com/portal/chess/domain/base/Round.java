@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "ROUND_T")
@@ -60,8 +59,7 @@ public class Round implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    @ForeignKey(name = "round_category_fk")
+    @JoinColumn(name = "category_id", nullable = false, foreignKey = @ForeignKey(name = "round_category_fk"))
     public Category getCategory() {
         return category;
     }

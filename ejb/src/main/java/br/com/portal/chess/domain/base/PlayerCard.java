@@ -4,14 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.ForeignKey;
 
 @Entity
 @Table(name = "PLAYER_CARD_T")
@@ -35,8 +34,7 @@ public class PlayerCard implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "player_id", nullable = false)
-    @ForeignKey(name = "player_card_player_fk")
+    @JoinColumn(name = "player_id", nullable = false, foreignKey = @ForeignKey(name = "player_card_player_fk"))
     public Player getPlayer() {
         return player;
     }
@@ -46,8 +44,7 @@ public class PlayerCard implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    @ForeignKey(name = "player_card_category_fk")
+    @JoinColumn(name = "category_id", nullable = false, foreignKey = @ForeignKey(name = "player_card_category_fk"))
     public Category getCategory() {
         return category;
     }
