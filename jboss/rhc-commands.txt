@@ -1,11 +1,21 @@
 # Acessar app/portas do openshift local
-rhc port-forward portalchess
+rhc port-forward portal
 
 # Reiniciar jboss
-rhc app restart -a portalchess
+rhc app restart -a portal
 
 # Parar jboss
-rhc app stop -a portalchess
+rhc app stop -a portal
 
 # Iniciar jboss
-rhc app start -a portalchess
+rhc app start -a portal
+
+# Wildfly 9 Admin
+# Username: adminRmt3iKh
+# Password: 6wQ2pCabEdDI
+
+# PostgreSQL 9.2
+# Root User: adminyeyevbu
+# Root Password: IXzhQ4i1uNXA
+# Database Name: portal
+# Connection URL: postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT
