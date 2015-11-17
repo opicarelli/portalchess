@@ -32,6 +32,11 @@
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!-- TODO Verificar scope -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -43,6 +48,11 @@
         </dependency>
 
         <!-- SCOPE TEST -->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <!-- BUILD -->
