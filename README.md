@@ -1,3 +1,5 @@
+This is a POC in Java EE 7 (JSF 2.2, EJB 3.2, JPA 2.1)
+
 1. Portal Web Browser
 2.  Portal Web Mobile
 3. Create Account
